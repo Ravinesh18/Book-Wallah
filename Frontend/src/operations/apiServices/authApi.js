@@ -49,6 +49,8 @@ export function signUpUser(navigate,
   }
 }
 
+
+
 export function login(email,password,navigate){
     return async(dispatch)=>{
       
