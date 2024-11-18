@@ -56,7 +56,7 @@ const AddBook = () => {
         <div>
           <label>
             <span>
-              Course Name<sup className="text-pink-200">*</sup>
+              Book Name<sup className="text-pink-200">*</sup>
             </span>
             <input
               id="bookName"
@@ -74,7 +74,7 @@ const AddBook = () => {
         <div>
           <label>
             <span>
-              Course Short Description<sup className="text-pink-200">*</sup>
+              Short Description of Book<sup className="text-pink-200">*</sup>
             </span>
             <textarea
               id="description"
@@ -84,7 +84,7 @@ const AddBook = () => {
             />
             {errors.description && (
               <span className="ml-2 text-xs tracking-wide text-pink-400">
-                Course Description is required
+                Book Description is required
               </span>
             )}
           </label>
@@ -124,8 +124,8 @@ const AddBook = () => {
         register={register}
         errors={errors}
         setValue={setValue}
-        label="coverImage"
-        name="coverImage"
+        label="CoverImage"
+        name="CoverImage"
       />
 
       <div className="flex justify-end gap-x-2">
