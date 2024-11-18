@@ -77,3 +77,25 @@ export function login(email,password,navigate){
       toast.dismiss(toastId)
     }
   }
+
+  export function logout(navigate) {
+    return async (dispatch) => {
+      try {
+        // Clear tokens and user data from local storage
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+  
+        // Clear Redux state
+        dispatch(setToken(null));
+        dispatch(setUser(null));
+  
+        // Navigate to the login page
+        toast.success("Logged out successfully");
+        navigate("/login");
+      } catch (error) {
+        console.error("Logout Error", error);
+        toast.error("An error occurred during logout");
+      }
+    };
+  }
+  
