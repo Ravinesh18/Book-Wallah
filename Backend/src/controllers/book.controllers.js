@@ -7,12 +7,27 @@ import { ApiResponse } from "../utils/apiResponses.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const createBook = asyncHandler(async (req, res) => {
-  const { bookName, ownerName, description, authorName, genre } = req.body;
-  console.log(bookName, ownerName, description, authorName, "hereeee");
+  const {
+    bookName,
+    ownerName,
+    description,
+    authorName,
+    genre: genres,
+  } = req.body;
 
-  //validate
-  if (!bookName || !ownerName || !description || !authorName || !genre) {
-    throw new ApiError(400, "All Fields are required!");
+  if (
+    !bookName ||
+    !ownerName ||
+    !description ||
+    !authorName ||
+    !genres ||
+    !Array.isArray(genres) ||
+    genres.length === 0
+  ) {
+    throw new ApiError(
+      400,
+      "All Fields are required and genres should be an array!"
+    );
   }
 
   const coverImageLocalPath = req.files?.coverImage[0]?.path;
@@ -29,23 +44,28 @@ const createBook = asyncHandler(async (req, res) => {
 
   const owner = await User.findById(ownerName);
   if (!owner) {
-    throw new ApiError(400, "Owner does not exist !");
+    throw new ApiError(400, "Owner does not exist!");
   }
-  console.log(genre)
-  let existingGenre = await Genre.findOne({genreName:genre});
-  console.log(existingGenre)
-  if (!existingGenre) {
-    const newGenre = new Genre({genreName:genre});
-    const existingGenre = await newGenre.save();
-  }
-  console.log(existingGenre)
+
+  const genreIds = await Promise.all(
+    genres.map(async (genreName) => {
+      let existingGenre = await Genre.findOne({ genreName });
+      if (!existingGenre) {
+        const newGenre = new Genre({ genreName });
+        existingGenre = await newGenre.save();
+      }
+      return existingGenre._id;
+    })
+  );
+
   const newBook = await Book.create({
     bookName,
     ownerName,
     description,
     coverImage: coverImage?.url || "",
     authorName,
-    genre: existingGenre._id,
+    genre: genreIds,
+
   });
 
   await newBook.save();
@@ -59,7 +79,7 @@ const createBook = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(
-      new ApiResponse(200, createBook, updatedUser, "Book Created Successfully")
+      new ApiResponse(200, newBook, updatedUser, "Book Created Successfully")
     );
 });
 
