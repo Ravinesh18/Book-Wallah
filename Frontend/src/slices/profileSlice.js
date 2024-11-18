@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
 };
 
+
 const profileSlice = createSlice({
     name:"profile",
     initialState: initialState,

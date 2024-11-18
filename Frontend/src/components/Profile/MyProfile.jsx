@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RiEditBoxLine } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
 const MyProfile = () => {
     const { user } = useSelector((state) => state.profile);
-
+    const navigate = useNavigate();
     return (
         <>
             <div className='flex flex-col lg:flex-row mx-auto items-center justify-center mt-10 bg-indigo-300 p-5 rounded-lg'>

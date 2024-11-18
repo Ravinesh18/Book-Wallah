@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import ChipInput from "../ChipInput";
-import Upload from "./Upload";
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux';
+import ChipInput from '../ChipInput';
+import Upload from './Upload'
 
-import { MdNavigateNext } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { postbook } from "../../operations/apiServices/bookApi";
+import { MdNavigateNext } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
+import { postbook } from '../../operations/apiServices/bookApi';
 const AddBook = () => {
   const { user } = useSelector((state) => state.profile);
   const {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import contactbg from '../assets/contact-usbg.jpg'
 import { useForm } from 'react-hook-form'
 import contact from '../assets/contact.png'
 import CountryCode from "../data/countrycode.json"
@@ -35,8 +34,8 @@ const ContactPage = () => {
     }, [reset, isSubmitSuccessful])
 
     return (
-        <div className="flex mx-auto bg-indigo-100 h-[100vh] w-11/12">
-            <img src={contact} className='h-[60%] mt-20 ' width={700}/>
+        <div className="flex mx-auto bg-indigo-100 h-[100%] w-11/12 ">
+            <img src={contact} className='h-[50%] mt-20 ' width={700}/>
             <form className="flex flex-col gap-7 p-6 font-semibold m-8"
                 onSubmit={handleSubmit(submitContactForm)}
             >
@@ -149,8 +148,8 @@ const ContactPage = () => {
                     <textarea
                         name="message"
                         id="message"
-                        cols="30"
-                        rows="7"
+                        cols="15"
+                        rows="4"
                         placeholder="Enter your message here"
                         className="form-style font-normal"
                         {...register("message", { required: true })}
@@ -165,7 +164,7 @@ const ContactPage = () => {
                 <button
                     disabled={loading}
                     type="submit"
-                    className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+                    className={`rounded-md bg-indigo-500 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
          ${!loading &&
                         "transition-all duration-200 hover:scale-95 hover:shadow-none"
                         }  disabled:bg-richblack-500 sm:text-[16px] `}
