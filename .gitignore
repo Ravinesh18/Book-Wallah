@@ -1,0 +1,36 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Cache
+*.db
+*.sqlite
+*.sqlite3
+*.pem
+
+# Compiled binary addons
+/build/Release
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
