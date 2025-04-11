@@ -50,19 +50,19 @@ const AddBook = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8"
+      className="rounded-md border-richblack-700 bg-richblack-800 p-4 space-y-6"
     >
       <div>
         <div>
           <label>
             <span>
-              Course Name<sup className="text-pink-200">*</sup>
+              Book Name<sup className="text-pink-200">*</sup>
             </span>
             <input
               id="bookName"
               placeholder="Enter Book Name"
               {...register("bookName", { required: true })}
-              className="w-full form-style mt-3"
+              className="w-full form-style mt-2 p-2"
             />
             {errors.bookName && (
               <span className="ml-2 text-xs tracking-wide text-pink-400">
@@ -74,17 +74,17 @@ const AddBook = () => {
         <div>
           <label>
             <span>
-              Course Short Description<sup className="text-pink-200">*</sup>
+              Short Description of Book<sup className="text-pink-200">*</sup>
             </span>
             <textarea
               id="description"
               placeholder="Enter Description.."
               {...register("description", { required: true })}
-              className="min-h-[140px] w-full mt-3 form-style"
+              className="min-h-[140px] w-full mt-2 p-2 form-style"
             />
             {errors.description && (
               <span className="ml-2 text-xs tracking-wide text-pink-400">
-                Course Description is required
+                Book Description is required
               </span>
             )}
           </label>
@@ -117,6 +117,7 @@ const AddBook = () => {
             errors={errors}
             setValue={setValue}
             getValues={getValues}
+            className='text-sm'
           />
         </div>
       </div>
@@ -124,12 +125,12 @@ const AddBook = () => {
         register={register}
         errors={errors}
         setValue={setValue}
-        label="coverImage"
-        name="coverImage"
+        label="CoverImage"
+        name="CoverImage"
       />
 
       <div className="flex justify-end gap-x-2">
-        <button disabled={loading}>
+        <button disabled={loading} className=" flex items-center space-x-2 px-6 py-2 text-sm bg-indigo-300 text-white rounded-md hover:bg-indigo-400 disabled:opacity-50">
           Next
           <MdNavigateNext />
         </button>
